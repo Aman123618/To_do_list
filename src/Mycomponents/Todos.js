@@ -4,10 +4,11 @@ import Todo from "./Todo";
 const Todos = (props) => {
   return (
     <div className="container">
-      <h3 className="text-center  my-3">Todos List</h3>
-       {props.todo.map((x)=>{
+      <h3 className="  my-3">Todos List</h3>
+      {props.todos.length==0 ? " No Todos to Display":
+       props.todos.map((itrator)=>{
         return(
-          <Todo t={x}/>
+          <Todo todo={itrator} key={itrator.sno} onDelete={props.onDelete }/>
         )
        })}
     </div>

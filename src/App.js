@@ -1,13 +1,23 @@
-import logo from "./logo.svg";
 import "./App.css";
 
 import Header from "./Mycomponents/Header";
-import Todo from "./Mycomponents/Todo";
+
 import Todos from "./Mycomponents/Todos";
 import Footer from "./Mycomponents/Footer";
+import { useState } from "react";
+import Addtodo from "./Mycomponents/Addtodo";
 
 function App() {
-  let todo = [
+  const ondelete = (todo) => {
+    console.log("i am ondelete", todo);
+    setTodos(
+      todos.filter((e) => {
+        return e !== todo;
+      })
+    );
+  };
+
+  const [todos, setTodos] = useState([
     {
       sno: 1,
       title: "market",
@@ -23,12 +33,16 @@ function App() {
       title: "chore",
       desc: "laundry",
     },
-  ];
+  ]);
+
   return (
     <>
-      <Header title="My Todos list" />
-     
-      <Todos todo={todo} />
+      <Header title="My Todos list" searchbar={true} />
+
+       <Addtodo/>
+
+      <Todos todos={todos} onDelete={ondelete} />
+      
       <Footer />
     </>
   );
